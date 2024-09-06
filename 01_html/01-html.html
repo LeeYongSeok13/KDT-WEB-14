@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HTML 기초</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>h1태그 입니다.</h1>
     <h2>h2태그 입니다.</h2>
     <h3>h3태그 입니다.</h3>
@@ -13,27 +13,28 @@
     <h5>h5태그 입니다.</h5>
     <h6>h6태그 입니다.</h6>
 
-    <p>본문입니다.  <br/>
-        두번째 줄입니다.
+    <p>
+      본문입니다. <br />
+      두번째 줄입니다.
     </p>
 
     <!-- type 마커모양 : circle, square, none -->
     <ul type="none">
-        <li>사과</li>
-        <li>바나나</li>
-        <li>포도</li>
+      <li>사과</li>
+      <li>바나나</li>
+      <li>포도</li>
     </ul>
 
     <!-- type : 1, A, a, I, i 등등 -->
     <!-- start : 시작 번호 -->
     <!-- reversed : 역순으로 -->
     <ol type="A" start="3" reversed>
-        <li>사과</li>
-        <li>바나나</li>
-        <li>포도</li>
+      <li>사과</li>
+      <li>바나나</li>
+      <li>포도</li>
     </ol>
 
-    <hr/>
+    <hr />
     <b>굵게</b>
     <strong>굵게 + 의미도 강조</strong>
     <i>이탤릭체</i>
@@ -41,5 +42,107 @@
     <del>중간줄 (취소선)</del>
     <u>밑줄</u>
 
-</body>
+    <!-- day 2 -->
+    <!-- 상대경로(라이브 서버 사용시 상대경로로) : 현재 파일의 위치 기준 -->
+    <img src="./cat.jpg" alt="cat" />
+    <!-- 절대경로 : 서버의 처음 주소부터 접근 -->
+    <!-- PC의 절대 경로 -->
+    <img
+      src="C:\Users\namsa\OneDrive\바탕%20화면\Project\KDT-WEB-14\01_html\cat.jpg"
+      alt="cat"
+    />
+    <!-- 라이브 서버 절대 경로 -->
+    <img src="/01_html/cat.jpg" alt="cat live" />
+
+    <br />
+    <!-- a 태그 -->
+    <a href="https://www.naver.com">네이버</a>
+    <a href="https://www.naver.com" target="_blank">네이버(blank)</a>
+    <a href="https://www.naver.com" target="_self">네이버(self)</a>
+
+    <!-- form 태그 : 입력 form을 감싸고 있는 태그 -->
+    <form>
+      <input type="button" value="버튼" />
+      <input type="text" placeholder="text" />
+      <input type="password" placeholder="pw" />
+      <!-- checkbox : 여러개 선택 가능
+      name : 체크박스들을 묶어준다(식별값)
+      value : 실제로 체크박스 값을 가져올 때 나오는 값
+      -->
+      <input type="checkbox" name="fruits" value="apple" checked />사과
+      <input type="checkbox" name="fruits" value="banana" />바나나
+      <!-- radio : 하나만 선택 가능
+      name, value : checkbox와 기능 동일
+      -->
+      <input type="radio" name="gender" value="man" checked />남자
+      <input type="radio" name="gender" value="woman" />여자
+      <!-- 년 월 일 -->
+      <input type="date" />
+      <!-- 날짜 + 시간 -->
+      <input type="datetime-local" />
+      <!-- select -->
+      <select>
+        <optgroup label="커피">
+          <option value="americano">아메리카노</option>
+          <option value="cafeLatte" selected>카페라떼</option>
+          <option value="espresso">에스프레소</option>
+        </optgroup>
+        <optgroup label="티">
+          <option value="earlgrey">얼그레이티</option>
+          <option value="jasmin">자스민티</option>
+        </optgroup>
+      </select>
+    </form>
+    <hr />
+
+    <!-- table -->
+    <!-- rowspan : 해당 칸이 점유하는 행의 수 지정 -->
+    <!-- colspan : 해당 칸이 점유하는 열의 수 지정 -->
+    <table border="1" cellspacing="0" cellpadding="5" widt="300" height="100">
+      <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>전화번호</th>
+      </tr>
+      <tr>
+        <td>이용석</td>
+        <td>30</td>
+        <td>010-4124-5417</td>
+      </tr>
+      <tr>
+        <td rowspan="2">홍길동</td>
+        <td colspan="2">100</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>010-1234-1234</td>
+      </tr>
+    </table>
+
+    <!-- semantic tag -->
+    <header>
+      <nav>
+        <ul>
+          <li><a>menu 1</a></li>
+          <li><a>menu 2</a></li>
+          <li><a>menu 3</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <h2>경제</h2>
+        <article></article>
+        <article></article>
+        <article></article>
+      </section>
+      <section>
+        <h2>사회</h2>
+        <article></article>
+        <article></article>
+        <article></article>
+      </section>
+    </main>
+    <footer>footer</footer>
+  </body>
 </html>

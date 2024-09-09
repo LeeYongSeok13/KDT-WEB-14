@@ -1,0 +1,30 @@
+/* noonnu */
+@font-face {
+  font-family: "HSSaemaul-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSSaemaul-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* font */
+.box {
+  width: 200px;
+  height: 200px;
+  font-size: 16px;
+  /* px, em, rem, % 등으로 지정 
+    - em : 상위 요소 크기의 ??배로 하겠다
+    - rem : 문서의 최상위 요소, html 요소 크기의 몇 배로
+  */
+  font-weight: 700;
+  line-height: 4; /* 요소의 글꼴 크기의 배수로 지정 */
+  text-align: center;
+}
+
+.google {
+  font-family: "Protest Guerrilla", sans-serif;
+}
+
+.noon {
+  font-family: "HSSaemaul-Regular";
+}

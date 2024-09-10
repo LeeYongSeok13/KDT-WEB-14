@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+}
+
+.circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.circle1 {
+  position: relative;
+}
+
+.eye1 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: calc((100px - 30px) / 3);
+  left: calc((100px - 30px) / 3);
+  border-radius: 50%;
+  background-color: white;
+  z-index: 2;
+}
+
+.eye2 {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: calc((100px - 15px) / 3);
+  left: 23px;
+  border-radius: 50%;
+  background-color: black;
+  z-index: 3;
+}
+
+.circle1 {
+  background-color: cornflowerblue;
+  z-index: 1;
+}
+
+.circle2 {
+  top: 50px;
+  left: 70px;
+  background-color: deepskyblue;
+  z-index: 2;
+}
+
+.circle3 {
+  top: 100px;
+  left: 105px;
+  background-color: blue;
+  z-index: 3;
+}
+
+.circle4 {
+  top: 100px;
+  left: 170px;
+  background-color: royalblue;
+  z-index: 4;
+}
+.circle5 {
+  top: 100px;
+  left: 245px;
+  background-color: skyblue;
+  z-index: 5;
+}
+
+img {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  width: 20%;
+  z-index: 10;
+}

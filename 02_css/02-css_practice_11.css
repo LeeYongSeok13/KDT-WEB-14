@@ -1,0 +1,29 @@
+div {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 5px;
+  border: 2px solid black;
+}
+
+/* border-width로 4방향 테두리 두께 변경 */
+.border1 {
+  border-width: 5px 4px 3px 2px;
+}
+
+/* border-style로 4방향 테두리 스타일 변경 */
+.border2 {
+  border-style: solid dashed dotted double;
+}
+
+/* border-color로 4방향 색상 변경 */
+.border3 {
+  border-color: black blue skyblue coral;
+}
+
+/* border-방향 속성으로 4방향 테두리 스타일 다른 div 완성 */
+.border4 {
+  border-top: 5px solid black;
+  border-right: 4px dashed blue;
+  border-bottom: 3px dotted skyblue;
+  border-left: 2px double coral;
+}

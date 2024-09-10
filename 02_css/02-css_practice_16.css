@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+}
+
+.container div {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+}
+
+.item1 {
+  position: relative;
+  background-color: skyblue;
+  z-index: 1;
+}
+
+.item2 {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background-color: blue;
+  z-index: 0;
+}
+
+.item3 {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  background-color: violet;
+  z-index: 2;
+}

@@ -1,0 +1,27 @@
+.container {
+  position: relative;
+  background-color: lightgray;
+  width: 800px;
+  height: 400px;
+}
+
+img {
+  position: absolute;
+  width: 250px;
+  height: 200px;
+}
+
+#rabbit {
+  transform: translate(50px, 100px) skewY(25deg);
+  z-index: 3;
+}
+
+#cat {
+  transform: translate(250px, 100px) skewY(25deg);
+  z-index: 2;
+}
+
+#fox {
+  transform: translate(450px, 100px) skewY(25deg);
+  z-index: 1;
+}

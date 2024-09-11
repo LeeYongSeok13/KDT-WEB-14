@@ -1,0 +1,78 @@
+div {
+  display: inline-block;
+  margin-right: 50px;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+hr {
+  margin-bottom: 100px;
+}
+
+#img_translatex:hover {
+  transform: translateX(40px);
+}
+
+#img_translatey:hover {
+  transform: translateY(40px);
+}
+
+#img_translatexy:hover {
+  transform: translate(40px, 40px);
+}
+
+/* scale */
+#img_scalex:hover {
+  transform: scaleX(2);
+}
+
+#img_scaley:hover {
+  transform: scaleY(2);
+}
+
+#img_scale:hover {
+  transform: scale(2);
+}
+
+#img_scale23:hover {
+  transform: scale(2, 3);
+}
+
+/* rotate */
+#img_rotatex:hover {
+  transform: rotateX(100deg);
+}
+
+#img_rotatey:hover {
+  transform: rotateY(100deg);
+}
+
+#img_rotatexy:hover {
+  transform: rotate(100deg);
+}
+
+/* skew */
+#img_skewx:hover {
+  transform: skewX(50deg);
+}
+
+#img_skewy:hover {
+  transform: skewY(50deg);
+}
+
+#img_skewxy:hover {
+  transform: skew(50deg, 50deg);
+}
+
+/* backface */
+#img_backface:hover {
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+#transform-all:hover {
+  transform: scale(2) skew(50deg, 50deg);
+}

@@ -1,0 +1,29 @@
+.container {
+  box-sizing: border-box;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  border: 1px solid black;
+  margin-bottom: 30px;
+}
+
+.container div {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  background-color: skyblue;
+  border: 1px solid black;
+}
+
+.container1 {
+  flex-direction: row;
+}
+
+.container2 {
+  flex-direction: row-reverse;
+}
+
+.container3 {
+  flex-direction: column;
+}

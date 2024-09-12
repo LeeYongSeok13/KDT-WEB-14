@@ -1,0 +1,51 @@
+div {
+  width: 100px;
+  height: 100px;
+  background-color: aqua;
+  position: relative;
+  /* animation: name duration timing-function(생략O) delay(생략O) iteration-count direction(생략O) fill-mode(생략O); */
+  animation-name: myanim;
+  animation-duration: 2s;
+  animation-iteration-count: 3; /* 숫자 지정 or 무한반복(infinite)*/
+  animation-timing-function: ease;
+  animation-delay: 1s;
+}
+
+/* @keyframes 이름 {
+0% {
+}
+
+50% {
+}
+
+100% {
+}
+
+*/
+
+@keyframes myanim {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+
+  25% {
+    left: 100px;
+    top: 100px;
+  }
+
+  50% {
+    left: 200px;
+    top: 200px;
+  }
+
+  75% {
+    left: 100px;
+    top: 300px;
+  }
+
+  100% {
+    left: 0px;
+    top: 400px;
+  }
+}

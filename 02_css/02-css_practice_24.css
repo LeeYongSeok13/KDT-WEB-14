@@ -1,0 +1,16 @@
+div {
+  width: 100px;
+  height: 100px;
+  color: white;
+  background-color: black;
+  transition-property: width, height;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+  transition-delay: 0.5s;
+  overflow: auto;
+}
+
+div:hover {
+  width: 300px;
+  height: 300px;
+}

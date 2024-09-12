@@ -11,21 +11,21 @@ ul {
 }
 .header1 {
   width: 100%;
-  height: 60px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: lightgray;
   margin-bottom: 30px;
 }
 
-.header1 h2 {
+.header1 h3 {
   padding: 0 10px;
 }
 
 .header1 ul {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  font-weight: 900;
 }
 
 .header1 ul li {
@@ -34,12 +34,25 @@ ul {
 
 .header2 {
   width: 100%;
-  height: 60px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
-  background-color: lightgray;
   align-items: center;
+  background-color: lightgray;
+  margin-bottom: 30px;
 }
 
 .header2 div {
+  font-weight: 900;
+  padding: 0 10px;
+}
+
+.header3 {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgray;
+  margin-bottom: 30px;
 }

@@ -1,0 +1,29 @@
+body {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100vw;
+  display: flex;
+}
+
+.container div {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  border: 1px solid red;
+  margin-right: 30px;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    display: block;
+  }
+
+  .container div {
+    background-color: skyblue;
+    margin-bottom: 30px;
+    margin-right: 0;
+  }
+}

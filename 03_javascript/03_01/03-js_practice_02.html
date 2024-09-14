@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>실습 2.</title>
+
+    <script>
+      let introduce = {
+        name: "이용석",
+        age: 30,
+        mbti: "INTJ",
+        hometown: "부산",
+        hobby: function () {
+          return "스포츠 시청";
+        },
+      };
+
+      console.log(introduce.name);
+      console.log(introduce.age);
+      console.log(introduce["mbti"]);
+      console.log(introduce["hometown"]);
+      console.log(introduce.hobby());
+    </script>
+  </head>
+  <body></body>
+</html>

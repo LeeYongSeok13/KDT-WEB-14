@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>반복문 실습 1</title>
+    <script>
+      let n = 0;
+      for (n; n < 10000; n++) {
+        if (n % 13 == 0 && n % 2 == 1) {
+          console.log("13의 배수면서 홀수인 n의 값:", n);
+        }
+      }
+
+      let num = prompt("숫자를 입력해주세요.");
+      let i = 0;
+      for (i; i <= num; i++) {
+        if (i % 13 == 0 && i % 2 == 1) {
+          console.log(
+            "입력한 숫자 까지의 13의 배수와 홀수인 조건을 충족하는 값:",
+            i
+          );
+        }
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

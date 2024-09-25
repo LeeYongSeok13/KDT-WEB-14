@@ -108,19 +108,24 @@
     </table>
 
     <script>
-      let day = "td > p"
-      $(day).click(function() {
-          $("#date").attr("value", `${$(this).text()}`);
-        })
-
       let target;
+
+      // 날짜 클릭했을 때 이벤트 함수
+      $("td > p").click(function() {
+          $("#date").val($(this).text());
+          target = this;
+        })
 
       function writeSchedule() {
         // 이 함수를 채워주세요.
-        $("button").click(function(){
-          let inputValue = $("#content").val()
-          console.log(inputValue);
-        })
+        let content = $("#content").val()
+
+        // $(target).parent().append(`<span>${content}</span></br>`) // parent 사용해서 append함수를 이용
+        $(target).after(`<span>${content}</span></br>`) // after 사용해서 출력
+
+        // 초기화
+        $("#date").val("");
+        $("#content").val("");
       }
 
     </script>

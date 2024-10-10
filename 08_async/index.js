@@ -81,10 +81,13 @@ function hell(cb) {
   }, 1000);
 }
 
+// call -> back -> hell 순서로 실행
 call("kim", function (name) {
   console.log(name + "반가워");
+
   back(function (txt) {
     console.log(txt + "를 실행했구나");
+
     hell(function (message) {
       console.log("여기는" + message);
     });

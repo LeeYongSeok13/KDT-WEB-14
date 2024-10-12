@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+  </head>
+  <body>
+    <h2>Get 요청</h2>
+    <form action="/login" method="get">
+      <label for="id">ID</label>
+      <input type="text" name="id" id="id" />
+
+      <label for="pw">PW</label>
+      <input type="password" name="pw" id="pw" />
+
+      <input type="text" name="email" />
+      <input type="number" name="grade" />
+      <button>제출</button>
+    </form>
+
+    <h2>Post 요청</h2>
+    <form action="/login" method="post">
+      <label for="id">ID</label>
+      <input
+        type="text"
+        name="id"
+        id="id"
+        required
+        placeholder="ID"
+        pattern="^([a-zA-z0-9가-힣]){4,}"
+        title="아이디는 대소문자, 한글, 숫자로 구성된 4글자 이상의 문자여야 합니다."
+      />
+
+      <label for="pw">PW</label>
+      <input
+        type="password"
+        name="pw"
+        id="pw"
+        required
+        placeholder="PW"
+        pattern="([a-z0-9]){8,12}"
+        title="비밀번호는 영어 소문자와 숫자로 구성된 8~12자리 문자여야 합니다."
+      />
+
+      <input type="text" name="email" />
+      <input type="number" name="grade" />
+      <button>제출</button>
+    </form>
+
+    <hr />
+
+    <!-- js form validation -->
+    <form
+      action="/js-form-check"
+      method="post"
+      onsubmit="return checkForm(this)"
+    >
+      <input
+        type="text"
+        name="id"
+        placeholder="ID"
+        minlength="4"
+        title="최소 4글자"
+      />
+      <span>우편물 수령 장소</span>
+      <input type="checkbox" name="post" value="자택" />
+      <input type="checkbox" name="post" value="회사" />
+      <button>제출</button>
+    </form>
+
+    <hr />
+
+    <h2>실습2. get으로 정보 받기</h2>
+    <!-- form 시작 -->
+    <form action="/practice" method="get">
+      <!-- input 이름 -->
+      <label for="name">이름</label>
+      <input type="text" name="name" , id="name" required />
+
+      <!-- input 성별 -->
+      <fieldset>
+        <legend>성별</legend>
+        <input type="radio" name="gender" id="maler" value="남자" required />
+        <label for="male">남자</label>
+        <input type="radio" name="gender" id="female" value="여자" />
+        <label for="female">여자</label>
+      </fieldset>
+
+      <!-- input 생년월일 -->
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="year" id="year">
+          <% for (i = 2000; i < 2025; i++) {%>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+
+        <label for="year">년</label>
+        <select name="month" id="month">
+          <% for (i = 1; i <= 12; i++) {%>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+        <label for="month">월</label>
+        <select name="day" id="day">
+          <% for (i = 1; i <= 31; i++) {%>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+        <label for="">일</label>
+      </fieldset>
+
+      <!-- input 관심사 -->
+      <fieldset>
+        <legend>관심사</legend>
+        <input type="checkbox" name="interest" id="trip" value="여행" />
+        <label for="trip">여행</label>
+        <input type="checkbox" name="interest" id="fashion" value="패션" />
+        <label for="fashion">패션</label>
+        <input type="checkbox" name="interest" id="food" value="음식" />
+        <label for="food">음식</label>
+      </fieldset>
+
+      <br />
+
+      <!-- 회원가입 버튼 -->
+      <button>회원가입</button>
+    </form>
+
+    <hr />
+
+    <h2>실습. post로 정보 받기</h2>
+
+    <form action="/practice" method="post">
+      <!-- input 이름 -->
+      <label for="name">이름</label>
+      <input type="text" name="name" id="name" />
+
+      <!-- input 성별 -->
+      <fieldset>
+        <legend>성별</legend>
+        <input type="radio" name="gender" id="male" value="남자" required />
+        <label for="male">남자</label>
+        <input type="radio" name="gender" id="female" value="여자" />
+        <label for="female">여자</label>
+      </fieldset>
+
+      <!-- input 생년월일 -->
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="year" id="year">
+          <% for (i = 2000; i < 2025; i++) {%>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+
+        <label for="year">년</label>
+        <select name="month" id="month">
+          <% for (i = 1; i <= 12; i++) {%>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+        <label for="month">월</label>
+        <select name="day" id="day">
+          <% for (i = 1; i <= 31; i++) {%>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+        <label for="">일</label>
+      </fieldset>
+
+      <!-- input 관심사 -->
+      <fieldset>
+        <legend>관심사</legend>
+        <input type="checkbox" name="interest" id="trip" value="여행" />
+        <label for="trip">여행</label>
+        <input type="checkbox" name="interest" id="fashion" value="패션" />
+        <label for="fashion">패션</label>
+        <input type="checkbox" name="interest" id="food" value="음식" />
+        <label for="food">음식</label>
+      </fieldset>
+
+      <!-- input 선택 -->
+      <fieldset>
+        <legend>선택</legend>
+        <label for="my-color">좋아하는 색상</label>
+        <input type="color" name="color" id="my-color" />
+        <br />
+        <label for="my-number">좋아하는 숫자</label>
+        <input type="number" name="number" id="my-number" />
+      </fieldset>
+
+      <br />
+
+      <!-- 회원가입 버튼 -->
+      <button>회원가입</button>
+    </form>
+    <script>
+      function checkForm(form) {
+        if (form.id.value == "") {
+          form.id.focus();
+          alert("아이디를 입력해 주세요!");
+          return false;
+        }
+
+        if (form.post[0].checked == false && form.post[1].checked == false) {
+          alert("우편물 수령 장소를 선택해 주세요!");
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>

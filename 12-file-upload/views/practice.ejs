@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>실습. 파일 업로드</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      .box {
+        margin: 0 auto;
+        width: 500px;
+        height: 500px;
+        padding: 20px;
+        text-align: center;
+        background-color: white;
+        border-radius: 10px;
+      }
+
+      img {
+        width: 250px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <img src="<%= userFile %>" alt="profile" />
+      <h2><%= userInfo.userId %>님 환영합니다!</h2>
+      <div>
+        <p>비밀번호: <%= userInfo.userPw %></p>
+        <p>이름: <%= userInfo.userName %></p>
+        <p>나이: <%= userInfo.userAge %></p>
+      </div>
+    </div>
+  </body>
+</html>

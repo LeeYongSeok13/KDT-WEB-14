@@ -8,6 +8,11 @@ app.set("views", "./views");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const userInfo = {
+  id: "banana",
+  pw: "1234",
+};
+
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -54,6 +59,21 @@ app.post("/fetch", (req, res) => {
 app.get("/axios", (req, res) => {
   console.log(req.query);
   res.send(req.query);
+});
+
+app.get("/practice", (req, res) => {
+  console.log(req.query);
+  console.log(req.params);
+  res.json(req.query);
+});
+
+app.post("/login", (req, res) => {
+  console.log(req.body);
+  if (userInfo.id === req.body.username && userInfo.pw === req.body.password) {
+    res.json({ userInfo: req.body, isSuccess: true });
+  } else {
+    res.json({ isSuccess: false });
+  }
 });
 
 app.listen(PORT, () => {

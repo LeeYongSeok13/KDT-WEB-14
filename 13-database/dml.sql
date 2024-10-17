@@ -156,10 +156,107 @@ INSERT INTO orders VALUES(NULL, 'imminji01', '초코파이', 5000, 2);
 -- group by 절과 함께 쓰이는 케이스가 많음
 
 -- 주문 테이블에서 상품의 총 판매 개수 검색
-SELECT sum(amount) FROM orders;
+SELECT SUM(amount) FROM orders;
 
 -- 주문 테이블에서 상품의 총 판매 개수 검색 + 의미있는 열 이름으로 변경
-SELECT sum(amount) AS 'total_amount' FROM orders;
+SELECT SUM(amount) AS 'total_amount' FROM orders;
 
 -- 주문 테이블에서 총 판매 개수, 평균 판매 개수, 상품 최저가, 상품 최고가 검색
-SELECT sum(amount) AS 'total_amount', avg(amount) AS 'avg_amount', min(price) AS 'min_price', max(price) AS 'max_price' FROM orders;
+SELECT SUM(amount) AS 'total_amount', AVG(amount) AS 'avg_amount', MIN(price) AS 'min_price', MAX(price) AS 'max_price' FROM orders;
+
+-- 주문 테이블에서 총 주문 건수
+SELECT COUNT(*) FROM orders;
+
+-- 주문 테이블에서 주문한 고객 수(중복 없이)
+SELECT COUNT(DISTINCT custid) FROM orders;
+
+-- < GROUP BY >
+-- "~별로"
+
+-- 고객별로 주문한 주문 건수 구하기
+SELECT custid, COUNT(*) FROM orders GROUP BY custid;
+
+-- 고객별로 주문한 상품 총 수량 구하기
+SELECT custid, SUM(amount) FROM orders GROUP BY custid;
+
+-- 고객별로 주문한 총 주문액 구하기
+SELECT custid, SUM(amount * price) FROM orders GROUP BY custid;
+
+-- 상품별로 판매 개수 구하기
+SELECT prodname, SUM(amount) FROM orders GROUP BY prodname;
+
+-- < HAVING >
+-- group by 절 이후 추가 조건
+-- 그룹에 대해서 필터링
+
+-- 총 주문액이 10000원 이상인 고객에 대해서 고객별로 주문한 상품 총 수량 구하기
+SELECT custid, SUM(amount), SUM(amount * price) FROM orders
+  GROUP BY custid
+  HAVING SUM(amount * price) >= 10000;
+
+-- 총 주문액이 10000원 이상인 고객에 대해서서 고객별로 주문한 상품 총 수량 구하기
+-- (단, custid가 'bunny'인 고객은 제외하고 출력할 것)
+-- WHERE, GROUP BY, HAVING 모두 사용한 예시
+SELECT custid, SUM(amount), SUM(amount * price) FROM orders
+  WHERE custid != 'bunny'
+  GROUP BY custid
+  HAVING SUM(amount * price) >= 10000;
+
+-- group by 주의 사항
+-- select 절에서 group by 에서 사용한 속성과 집계함수만 사용 가능 
+
+-- 실습3. CREATE 문
+-- 아래 조건을 충족하는 TABLE 생성
+CREATE TABLE user (
+  id VARCHAR(10) NOT NULL PRIMARY KEY,
+  pw VARCHAR(20) NOT NULL,
+  name VARCHAR(5) NOT NULL,
+  gender ENUM('F', 'M', '') DEFAULT '',
+  birthday DATE NOT NULL,
+  age INT(3) NOT NULL DEFAULT 0;
+)
+
+DESC user;
+
+-- 실습4. INSERT문
+-- 이전 실습에 생성한 user 테이블에서 INSERT문을 이용해 데이터 추가
+-- SELECT * FROM user 명령어를 이용해 모든 회원 목록 출력
+INSERT INTO user VALUES('hong1234', '8o4bkg', '홍길동', 'M', '1990-01-31', 33);
+INSERT INTO user VALUES('sexysung', '87awjkdf', '성춘향', 'F', '1992-03-31', 31);
+INSERT INTO user VALUES('power70', 'qxur8sda', '변사또', 'M', '1970-05-02', 53);
+INSERT INTO user VALUES('hanzo', 'jk48fn4', '한조', 'M', '1984-10-18', 39);
+INSERT INTO user VALUES('widowmaker', '38ewifh3', '위도우', 'F', '1976-06-27', 47);
+INSERT INTO user VALUES('dvadva', 'k3f3ah', '송하나', 'F', '2001-06-03', 22);
+INSERT INTO user VALUES('jungkrat', '4ifha7f', '정크랫', 'M', '1999-11-11', 24);
+
+SELECT * FROM user;
+
+-- 실습5. SELECT 문
+-- 이전에 생성한 user 테이블에서 다음 조건을 만족하는 SQL문 작성하기
+
+-- 1. 모든 회원목록을 가져오는데, 이때 birthday 컬럼의 값을 기준으로 오름차순으로 정렬하여 가져오시오.
+SELECT * FROM user ORDER BY birthday;
+
+-- 2. 회원 목록 중 gender 컬럼의 값이 'M'인 회원목록을 가져오는데, 이 때 name 컬럼의 값을 기준으로 내림차순으로 정렬하여 가져오시오.
+SELECT * FROM user WHERE gender = 'M' ORDER BY name DESC;
+
+-- 3. 1990년대에 태어난 회원의 id, name 컬럼을 가져와 목록으로 보여주시오.
+SELECT id, name FROM user WHERE birthday BETWEEN '1990-01-01' AND '1999-12-31';
+
+-- 4. 6월생 회원의 목록을 birthday 기준으로 오름차순으로 정렬하여 가져오시오.
+SELECT * FROM user WHERE birthday LIKE '%-06-%' ORDER BY birthday;
+
+-- 5. gender 컬럼의 값이 'M'이고, 1970년대에 태어난 회원의 목록을 가져오시오.
+SELECT * FROM user WHERE gender = 'M' AND birthday BETWEEN '1970-01-01' AND '1979-12-31';
+
+-- 6. 모든 회원목록 중 age를 기준으로 내림차순 정렬하여 가져오는데, 그때 처음 3개의 레코드만 가져오시오.
+SELECT * FROM user ORDER BY age DESC LIMIT 3;
+
+-- 7. 모든 회원목록 중 나이가 25이상 50이하인 회원의 목록을 출력하시오.
+SELECT * FROM user WHERE age BETWEEN 25 AND 50;
+
+-- 8. id 컬럼의 값이 hong1234 인 레코드의 pw 컬럼의 값을 12345678로 변경하시오.
+UPDATE user SET pw = '12345678' WHERE id = 'hong1234';
+
+-- 9. id 컬럼의 값이 jungkrat인 레코드를 삭제하시오.  
+DELETE FROM user WHERE id = 'jungkrat';

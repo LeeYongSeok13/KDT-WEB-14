@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>실습2. Axios post 로그인</title>
+
+    <!-- axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+      .success {
+        color: blue;
+        font-weight: 700;
+      }
+
+      .error {
+        color: red;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>실습2. Axios post 로그인</h2>
+    <p>(참고) app.js에 저장한 아이디 : banana, 패스워드 : 1234</p>
+
+    <!-- 로그인 폼 -->
+    <form class="login">
+      <label for="id">아이디</label>
+      <input type="text" name="userid" id="userid" />
+      <br />
+      <label for="pw">비밀번호</label>
+      <input type="password" name="userpw" id="userpw" />
+      <button type="button" onclick="login();">로그인</button>
+    </form>
+
+    <!-- Axios의 결과를 받아 와 "로그인" 버튼 아래 메시지로 보여줌 -->
+    <div class="loginResult"></div>
+
+    <script>
+      const loginResult = document.querySelector(".loginResult");
+      function login() {
+        const form = document.forms["login"];
+        const data = {
+          userId: form.userId.value,
+          userPw: form.userPw.value,
+        };
+
+        axios({
+          method: "post",
+          url: "/user/login",
+          data: data,
+        }).then((res) => {
+          console.log(res.data);
+          if (res.data.isSuccess) {
+            loginResult.textContent = `${res.data.userInfo.userId}님! 로그인 성공!`;
+            loginResult.classList.remove("error");
+            loginResult.classList.add("success");
+          } else {
+            loginResult.textContent = "아이디 또는 패스워드 오류!";
+            loginResult.classList.remove("success");
+            loginResult.classList.add("error");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

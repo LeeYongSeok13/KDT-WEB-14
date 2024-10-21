@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <script src="../static/signup.js"></script>
+
+    <!-- axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>회원가입</h1>
+
+    <form name="signup">
+      <label for="userid">아이디</label>
+      <input type="text" name="userid" id="userid" required maxlength="20" />
+      <label for="name">이름</label>
+      <input type="text" name="name" id="name" required maxlength="10" />
+      <label for="pw">비밀번호</label>
+      <input type="password" name="pw" id="pw" required maxlength="20" />
+      <br />
+      <button type="button" onclick="createUser()">회원가입</button>
+    </form>
+  </body>
+</html>

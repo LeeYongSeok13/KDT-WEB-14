@@ -9,11 +9,23 @@ const sequelize = new Sequelize(
   config // 정보 전체
 ); // sequelize 객체 선언시 매개변수로 다음 정보들을 받음 : 데이터베이스 명, 사용자, 비밀번호, 정보 전체
 
-// models/Visitor.js에서 정의한 model이 db 에 들어감
-db.Visitor = require("./Visitor")(sequelize, Sequelize.DataTypes);
+// TODO : 모델 모듈 불러오기
+const Player = require("./Player")(sequelize, Sequelize.DataTypes);
+const Profile = require("./Profile")(sequelize, Sequelize.DataTypes);
 
-// models/User.js에서 정의한 model이 db 에 들어감
-db.User = require("./User")(sequelize, Sequelize.DataTypes);
+// TODO : 관계 형성
+
+// 1) Player : Profile = 1:1
+Player.hasOne(Profile, {
+  foreignKey: "player_id",
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+});
+Profile.belongsTo(Player, { foreignKey: "player_id" });
+
+// TODO : 관계를 정의한 모델들을 db 객체에 저장
+db.Player = Player;
+db.Proflie = Profile;
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

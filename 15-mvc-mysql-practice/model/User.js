@@ -33,4 +33,11 @@ const getUser = async (id) => {
   return row;
 };
 
+// 로그인 요총
+const signin = async ({ userid, pw }) => {
+  const query = "SELECT * FROM user WHERE userid = ? and pw = ?";
+  const [rows] = await pool.query(query, [userid, pw]);
+  return rows;
+};
+
 module.exports = { getUser, createUser };

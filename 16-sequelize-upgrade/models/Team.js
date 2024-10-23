@@ -1,14 +1,14 @@
 /**
- * Player 모델을 정의하는 함수
+ * Team 모델을 정의하는 함수
  * @param {import('sequelize').Sequelize} Sequelize
  * @param {import('sequelize').DataTypes} DataTypes
  *
  */
-const PlayerModel = (Sequelize, DataTypes) => {
+const TeamModel = (Sequelize, DataTypes) => {
   return Sequelize.define(
-    "player",
+    "team",
     {
-      player_id: {
+      team_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
@@ -18,13 +18,9 @@ const PlayerModel = (Sequelize, DataTypes) => {
         type: DataTypes.STRING(63),
         allowNull: false,
       },
-      age: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
     },
     { freezeTableName: true }
   );
 };
 
-module.exports = PlayerModel;
+module.exports = TeamModel;

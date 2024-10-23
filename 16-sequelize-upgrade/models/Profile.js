@@ -1,5 +1,5 @@
 /**
- * visitor 모델을 정의하는 함수
+ * Profile 모델을 정의하는 함수
  * @param {import('sequelize').Sequelize} Sequelize
  * @param {import('sequelize').DataTypes} DataTypes
  *

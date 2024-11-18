@@ -53,6 +53,7 @@
       const roomInfo = document.querySelector("#room-info");
       const roomName = roomInfo.querySelector("#roomName");
       const nickname = roomInfo.querySelector("#nickname");
+      let myNick;
 
       // 채팅방 생성, 입장
       function join() {
@@ -73,6 +74,8 @@
           const chatContainer = document.querySelector(".chat-container");
           infoContainer.classList.add("d-none");
           chatContainer.classList.remove("d-none");
+
+          myNick = nickname.value;
         });
       }
 
@@ -81,8 +84,9 @@
         room_list.textContent = "";
 
         roomList.forEach((room) => {
+          console.log("room update");
           const li = document.createElement("li");
-          li.innerHTML = `${room} <button onclick="enterRoom('${room}')">입장</button>`;
+          li.innerHTML = `${room}  <button onclick="enterRoom('${room}')">입장</button>`;
           room_list.append(li);
         });
       });
@@ -97,6 +101,52 @@
         document
           .querySelector(".message-list")
           .insertAdjacentHTML("beforeend", `<div class="notice">${msg}</div>`);
+      });
+
+      socket.on("userList", (userList) => {
+        let options = `<option value="all">전체</option>`;
+
+        // 본인 제외하고 option 추가
+        for (let user of userList) {
+          if (user.key !== socket.id) {
+            options += `<option value="${user.key}">${user.nickname}</option>`;
+          }
+        }
+        document.querySelector(".nickname-select").innerHTML = options;
+      });
+
+      function send() {
+        const data = {
+          dm: document.querySelector(".nickname-select").value,
+          nick: myNick,
+          msg: document.querySelector("#message").value,
+          room: roomName.value,
+        };
+        socket.emit("send", data);
+        document.querySelector("#message").value = "";
+      }
+
+      socket.on("showMessage", (data) => {
+        const chatList = document.querySelector(".message-list");
+        const div = document.createElement("div");
+
+        if (myNick === data.nick) {
+          // 내가 보낸 메세지
+          div.classList.add("message", "sent");
+        } else {
+          div.classList.add("message", "received");
+        }
+
+        if (data.dm) {
+          div.classList.add("dm");
+          div.textContent = data.dm;
+        }
+
+        div.textContent += `${data.nick} : ${data.msg}`;
+        chatList.append(div);
+
+        // 메세지가 많아져서 스크롤 생기더라도 하단 고정
+        chatList.scrollTop = chatList.scrollHeight;
       });
     </script>
   </body>

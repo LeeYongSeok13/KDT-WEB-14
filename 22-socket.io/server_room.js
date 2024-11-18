@@ -14,20 +14,19 @@ const roomList = [];
 
 // 채팅방에 참여한 유저 조회
 function getUsersInRoom(room) {
-  // 사용자 정보를 저장
+  // 사용자 정보를 저장하는 배열
   const users = [];
 
   // 지정된 방에 클라이언트(socket id) 목록 가져오기
   const clients = io.sockets.adapter.rooms.get(room);
-  console.log(`${room} 채팅방의 클라이언트 목록조회 :: ${clients}`);
+  console.log(`${room} 채팅방의 클라이언트 목록 조회 :: ${clients}`);
 
   if (clients) {
     for (const socketId of clients) {
       // 특정 소켓 ID에 해당하는 클라이언트 소켓 정보 가져오기
       const socket = io.sockets.sockets.get(socketId);
       const nickname = socket.user || "알수없음";
-
-      const info = { nickname, key: socket.id };
+      const info = { nickname, key: socketId };
       users.push(info);
     }
   }
@@ -50,12 +49,12 @@ io.on("connection", (socket) => {
 
   // 채팅방 만들기
   socket.on("create", ({ roomName, nickname }, cb) => {
-    // join(방이름): 해당 방 이름이 없다면 생성, 있다면 입장
+    // join(방이름): 해당 방이름이 없다면 생성, 있다면 입장
     // socket.rooms 에 socket.id 값과 방 이름 확인 가능
     socket.join(roomName);
 
     // 채팅방에 입장한 사용자에게 notice 이벤트 발생
-    socket.to(roomName).emit("notice", `${nickname} 님이 입장하였습니다.`);
+    socket.to(roomName).emit("notice", `${nickname} 님이 입장하였습니다`);
 
     // socket 정보에 닉네임 추가
     socket.user = nickname;
@@ -65,7 +64,10 @@ io.on("connection", (socket) => {
       roomList.push(roomName);
       io.emit("updateRoom", roomList);
     }
-    getUsersInRoom(roomName);
+
+    // 채팅방에 있는 모든 유저를 조회해서 전송
+    const usersInRoom = getUsersInRoom(roomName);
+    io.to(roomName).emit("userList", usersInRoom);
     cb();
   });
 
@@ -90,14 +92,15 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("send", ({ dm, myNick, msg }) => {
+  socket.on("send", ({ dm, nick, msg, room }) => {
     // dm === all 이면 전체 발송
     // 그외 DM 발송
+    console.log(dm, nick, msg, room);
     if (dm === "all") {
-      io.emit("showMessage", { nick: myNick, msg });
+      io.to(room).emit("showMessage", { nick, msg });
     } else {
       const data = {
-        nick: myNick,
+        nick,
         msg: msg,
         dm: "(DM) ",
       };

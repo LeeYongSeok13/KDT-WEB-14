@@ -19,8 +19,8 @@ app.post("/chat", async (req, res) => {
 
   try {
     const result = await model.generateContent(prompt);
-    console.log(result);
-    res.json("완료");
+    const text = result.response.text();
+    res.json(response.text);
   } catch (error) {
     res.status(500).json({ response: "오류" });
   }

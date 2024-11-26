@@ -1,0 +1,55 @@
+// - 색상 변수로 지정
+$color-first: pink;
+$color-second: yellow;
+$color-third: green;
+
+// mixin으로 사이즈 지정
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin move($x, $y) {
+  transform: translate($x, $y);
+}
+
+$animation: 1s;
+
+.area {
+  .circle {
+    position: relative;
+    @include circle(20px);
+    border-radius: 50%;
+    animation: move-circle(4 * $animation) infinite;
+
+    &.pink {
+      background-color: $color-first;
+    }
+
+    &.yellow {
+      background-color: $color-second;
+    }
+
+    &.green {
+      background-color: $color-third;
+    }
+
+    @keyframes move-circle {
+      0% {
+        @include move(0, 0);
+      }
+      25% {
+        @include move(10px, 0);
+      }
+      50% {
+        @include move(10px, 10px);
+      }
+      75% {
+        @include move(0, 10px);
+      }
+      100% {
+        @include move(0, 0);
+      }
+    }
+  }
+}

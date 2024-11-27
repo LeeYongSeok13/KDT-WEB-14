@@ -36,17 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-/* RouterPractice CSS */
-.routerPractice {
-  display: flex;
-  background-color:blanchedalmond;
-}
-
-.routerPractice nav ul{
-  display: flex;
-}
-
-.routerPractice nav ul li {
-  list-style: none;
-}

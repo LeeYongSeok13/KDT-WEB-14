@@ -7,6 +7,8 @@ import MainPage from "./pages/MainPage";
 import ProductPage from "./pages/ProductPage";
 import { useEffect, useState } from "react";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import RouterPractice from "./components/RouterPractice";
+import StudentPage from "./pages/StudentPage";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -25,6 +27,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
+        <Routes>
+          <Route path="/" element={<RouterPractice />}/>
+          <Route path="/student/:id" element={<StudentPage />}/>  
+        </Routes> 
 
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -32,7 +38,7 @@ function App() {
             path="/products"
             element={<ProductPage products={products} />}
           />
-          <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/products/:id" element={<ProductDetailPage products={products} />} />
         </Routes>
       </BrowserRouter>
     </div>
